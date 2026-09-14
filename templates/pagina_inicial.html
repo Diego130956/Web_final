@@ -1,0 +1,52 @@
+{% extends 'home.html' %}
+
+
+
+
+{% block content %}
+
+
+<main class="container-xxl py-5">
+    <section class="row align-items-center g-5 py-5">
+        <div class="col-lg-5 hero-content-order">
+            <div class="mb-4">
+
+                <h1 class="display-4 fw-bold mb-3 lh-sm text-white"><span style="color: black;" class="">Encontre a máquina certa para sua obra</span>
+                    </h1>
+                <p class="lead text-on-surface-variant mb-4">
+                    Acesse o maior catálogo de maquinas do mercado atual.
+                </p>
+            </div>
+
+        </div>
+        <!-- Image Column -->
+        <div class="col-lg-7 hero-image-order">
+            <div class="container">
+                <div class="form-group">
+                <form method="POST" action="/localizar">
+                    <div class="form-group">
+                        <label for="nome">Máquina</label>
+                        <input type="text" id="nome" name="nome" placeholder="EX: Escavadeira" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Localização</label>
+                        <input type="text" id="email" name="email" placeholder="Insira a localização" required>
+                    </div>
+                                <button type="submit" class="btn-submit">Procurar</button>
+
+
+                </form>
+
+
+            </div>
+        </div>
+        </div>
+
+
+    </section>
+</main>
+
+
+
+{% endblock content %}
