@@ -17,6 +17,9 @@ def login():
 def base2():
     return render_template("base2.html")
 
+@app.route('/cadastro_maquinas')
+def cad_maquinas():
+    return render_template("cad_maquinas.html")
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)

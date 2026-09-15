@@ -1,32 +1,310 @@
-{% extends 'home.html'%}
+{% extends 'home.html' %}
 
-{% block content%}
+{% block menu_pagina %}
 
-<section class="p-4 p-lg-5 flex-grow-1">
-    <div class="container-fluid px-0">
-        <div class="menu">
-            <aside class="sidebar">
-                <nav>
-                <a class="nav-link" href="#">
-                    <span class="material-symbols-outlined">group</span>
-                    <span class="">Cadastro Maquinas</span>
-                </a>
-                <a class="nav-link" href="#">
-                    <span class="material-symbols-outlined">package_2</span>
-                    <span class="">Cadastro Maquinas</span>
-                </a>
-                <a class="nav-link" href="#">
-                    <span class="material-symbols-outlined">swap_horiz</span>
-                    <span class="">Movimentações</span>
-                </a>
-                <a class="nav-link" href="#">
-                    <span class="material-symbols-outlined"></span>
-                    <span class="">Hanking</span>
-                </a>
+<a href="{{ url_for('cad_maquinas') }}" class="text-decoration-none">
+    <button class="btn btn-primary-custom">
+        <span class="material-symbols-outlined">construction</span>
+        Cadastro Máquinas
+    </button>
+</a>
 
-                </nav>
-            </aside>
+<a href="#" class="text-decoration-none">
+    <button class="btn btn-primary-custom">
+        <span class="material-symbols-outlined">swap_horiz</span>
+        Movimentações
+    </button>
+</a>
+
+<a href="#" class="text-decoration-none">
+    <button class="btn btn-primary-custom">
+        <span class="material-symbols-outlined">emoji_events</span>
+        Hanking
+    </button>
+</a>
+
+{% endblock menu_pagina %}
+
+
+{% block login_pagina %}
+{% endblock login_pagina %}
+
+
+{% block content %}
+
+<style>
+    .cards {
+        background: #f3f3f3;
+        min-height: calc(100vh - 80px);
+        padding: 40px 5%;
+    }
+
+    .texto-base {
+        margin-bottom: 35px;
+    }
+
+    .texto-base h1 {
+        color: #222;
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .texto-base p {
+        color: #777;
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .highlight {
+        background: linear-gradient(135deg, #222, #3d3d3d);
+        border-radius: 18px;
+        padding: 30px;
+        color: white;
+        margin-bottom: 35px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .highlight h2 {
+        font-size: 26px;
+        font-weight: 800;
+        margin-bottom: 10px;
+    }
+
+    .highlight p {
+        color: #d0d0d0;
+        margin-bottom: 20px;
+    }
+
+    .highlight-button {
+        background: #efdd8d;
+        color: #222;
+        border: none;
+        padding: 11px 22px;
+        border-radius: 10px;
+        font-weight: 700;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .section-title {
+        color: #222;
+        font-size: 22px;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+
+    .machine-card {
+        background: white;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #e5e5e5;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+        transition: 0.25s;
+        height: 100%;
+    }
+
+    .machine-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.14);
+    }
+
+    .machine-image {
+        height: 170px;
+        background: linear-gradient(135deg, #4b4b4b, #1e1e1e);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .machine-image span {
+        font-size: 75px;
+        color: #efdd8d;
+    }
+
+    .machine-info {
+        padding: 20px;
+    }
+
+    .machine-info h3 {
+        color: #222;
+        font-size: 19px;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .machine-info p {
+        color: #777;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .machine-price {
+        color: #b05311;
+        font-size: 18px;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .details-button {
+        width: 100%;
+        border: none;
+        background: #222;
+        color: white;
+        padding: 10px;
+        border-radius: 9px;
+        font-weight: 600;
+        transition: 0.2s;
+    }
+
+    .details-button:hover {
+        background: #b05311;
+    }
+
+    .stats {
+        margin-top: 35px;
+    }
+
+    .stat-card {
+        background: white;
+        border-radius: 15px;
+        padding: 22px;
+        border: 1px solid #e5e5e5;
+        text-align: center;
+    }
+
+    .stat-card span {
+        font-size: 32px;
+        color: #b05311;
+        margin-bottom: 8px;
+    }
+
+    .stat-card h3 {
+        color: #222;
+        font-size: 24px;
+        font-weight: 800;
+        margin: 0;
+    }
+
+    .stat-card p {
+        color: #777;
+        margin: 5px 0 0;
+        font-size: 14px;
+    }
+</style>
+
+
+<div class="cards">
+    <h2 class="section-title">Funções em destaque</h2>
+
+
+    <div class="row g-4">
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="machine-card">
+
+                <div class="machine-image">
+                    <span class="material-symbols-outlined">
+                        construction
+                    </span>
+                </div>
+
+                <div class="machine-info">
+
+                    <h3>Prestadores de serviço</h3>
+
+                    <p>
+                        Prestadores de máquinas que estão
+                        disponíveis no mercado atual.
+                    </p>
+
+                    <div class="machine-price">
+                        Consulte já
+                    </div>
+
+                    <button class="details-button">
+                        Ver detalhes
+                    </button>
+
+                </div>
+
+            </div>
+
         </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="machine-card">
+
+                <div class="machine-image">
+                    <span class="material-symbols-outlined">
+                        agriculture
+                    </span>
+                </div>
+
+                <div class="machine-info">
+
+                    <h3>Pá Carregadeira</h3>
+
+                    <p>
+                        Excelente desempenho para carregamento
+                        e transporte de materiais.
+                    </p>
+
+                    <div class="machine-price">
+                        Consulte o preço
+                    </div>
+
+                    <button class="details-button">
+                        Ver detalhes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="col-md-6 col-lg-4">
+
+            <div class="machine-card">
+
+                <div class="machine-image">
+                    <span class="material-symbols-outlined">
+                        engineering
+                    </span>
+                </div>
+
+                <div class="machine-info">
+
+                    <h3>Retroescavadeira</h3>
+
+                    <p>
+                        Versatilidade e eficiência para obras,
+                        construções e serviços pesados.
+                    </p>
+
+                    <div class="machine-price">
+                        Consulte o preço
+                    </div>
+
+                    <button class="details-button">
+                        Ver detalhes
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-</section>
+</div>
+
+
+
 {% endblock content %}
